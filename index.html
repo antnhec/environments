@@ -8,7 +8,7 @@
   </head>
   <body>
     <a-scene>
-      <!-- Procedural environment -->
+      <!-- Environment -->
       <a-entity environment="preset: forest"></a-entity>
 
       <!-- Red Cube -->
@@ -17,30 +17,23 @@
       <!-- Green Sphere -->
       <a-sphere id="sphere" position="2 1 -4" radius="1" color="green"></a-sphere>
 
-      <!-- Camera + cursor for clicking -->
-      <a-entity camera look-controls position="0 1.6 0">
+      <!-- Camera with standard cursor -->
+      <a-entity camera position="0 1.6 0">
         <a-cursor
+          id="cursor"
           fuse="false"
-          rayOrigin="mouse"
+          raycaster="objects: a-box, a-sphere"
           color="black">
         </a-cursor>
       </a-entity>
 
-      <!-- Click event scripts -->
+      <!-- Script for clicks -->
       <script>
-        // Get the elements
         const cube = document.querySelector('#cube');
         const sphere = document.querySelector('#sphere');
 
-        // When cube is clicked
-        cube.addEventListener('click', () => {
-          alert('Hello!');
-        });
-
-        // When sphere is clicked
-        sphere.addEventListener('click', () => {
-          alert('Goodbye!');
-        });
+        cube.addEventListener('click', () => alert('Hello!'));
+        sphere.addEventListener('click', () => alert('Goodbye!'));
       </script>
     </a-scene>
   </body>
