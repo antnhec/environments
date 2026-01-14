@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>A-Frame Click Events</title>
+    <title>A-Frame Clickable 3D Text</title>
     <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.5.0/dist/aframe-environment-component.min.js"></script>
   </head>
@@ -17,24 +17,29 @@
       <!-- Green Sphere -->
       <a-sphere id="sphere" position="2 1 -4" radius="1" color="green"></a-sphere>
 
-      <!-- Camera with standard cursor -->
+      <!-- 3D Text elements (hidden initially) -->
+      <a-text id="helloText" value="Hello" position="0 2 -3" visible="false" color="#ff0" align="center"></a-text>
+      <a-text id="goodbyeText" value="Goodbye" position="2 2 -4" visible="false" color="#0ff" align="center"></a-text>
+
+      <!-- Camera + cursor -->
       <a-entity camera position="0 1.6 0">
         <a-cursor
-          id="cursor"
           fuse="false"
           raycaster="objects: a-box, a-sphere"
           color="black">
         </a-cursor>
       </a-entity>
 
-      <!-- Script for clicks -->
+      <!-- Click script -->
       <script>
         const cube = document.querySelector('#cube');
         const sphere = document.querySelector('#sphere');
+        const helloText = document.querySelector('#helloText');
+        const goodbyeText = document.querySelector('#goodbyeText');
 
-        cube.addEventListener('click', () => alert('Hello!'));
-        sphere.addEventListener('click', () => alert('Goodbye!'));
-      </script>
-    </a-scene>
-  </body>
-</html>
+        cube.addEventListener('click', () => {
+          // Toggle visibility of hello text
+          helloText.setAttribute('visible', !helloText.getAttribute('visible'));
+        });
+
+        sphere.addEventListener('click', () => {
